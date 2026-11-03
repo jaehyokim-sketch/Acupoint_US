@@ -1,0 +1,10 @@
+# Ignore heavy book extraction folders and build scripts
+Atlas of Ultrasound-Guided Procedures in Interventional Pain Management/
+*.docx
+*.py
+*.pyc
+__pycache__/
+.vscode/
+.idea/
+neck_atlas_src/
+*모델 개선*.html

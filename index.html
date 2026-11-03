@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>경혈-초음파 인터랙티브 아틀라스 | Acupoint US Interactive Atlas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0f1d;
+      --bg-secondary: #111a2e;
+      --bg-card: #162238;
+      --border-color: #263854;
+      --border-hover: #3b82f6;
+      --accent-cyan: #38bdf8;
+      --accent-emerald: #34d399;
+      --accent-amber: #fbbf24;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-sub: #cbd5e1;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(180deg, rgba(17, 26, 46, 0.95) 0%, rgba(10, 15, 29, 0.85) 100%);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 2.5rem 1.5rem 2rem;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 14px;
+      border-radius: 9999px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: var(--accent-cyan);
+      font-size: 0.825rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-cyan);
+      box-shadow: 0 0 8px var(--accent-cyan);
+    }
+
+    h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      background: linear-gradient(135deg, #ffffff 30%, #93c5fd 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.75rem;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto;
+      word-break: keep-all;
+    }
+
+    /* Main Container */
+    main {
+      flex: 1;
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-sub);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title::before {
+      content: '';
+      width: 4px;
+      height: 18px;
+      background: var(--accent-cyan);
+      border-radius: 2px;
+    }
+
+    /* Grid Cards */
+    .atlas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.75rem;
+      margin-bottom: 3rem;
+    }
+
+    .atlas-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .atlas-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-hover);
+      box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.5), 0 0 20px -2px rgba(59, 130, 246, 0.25);
+    }
+
+    .card-top {
+      margin-bottom: 1.5rem;
+    }
+
+    .card-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      letter-spacing: 0.04em;
+    }
+
+    .tag-neck {
+      background: rgba(52, 211, 153, 0.15);
+      color: var(--accent-emerald);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+    }
+
+    .tag-spine {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent-cyan);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .card-title {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+
+    .card-eng {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+
+    .card-desc {
+      font-size: 0.95rem;
+      color: var(--text-sub);
+      line-height: 1.65;
+      margin-bottom: 1.25rem;
+      word-break: keep-all;
+    }
+
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 1rem;
+    }
+
+    .feature-list li {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .feature-list li::before {
+      content: '✓';
+      color: var(--accent-cyan);
+      font-weight: bold;
+    }
+
+    .btn-launch {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 0.85rem 1.25rem;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    }
+
+    .btn-launch:hover {
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
+      transform: translateY(-1px);
+    }
+
+    .btn-launch svg {
+      width: 18px;
+      height: 18px;
+      transition: transform 0.2s ease;
+    }
+
+    .btn-launch:hover svg {
+      transform: translateX(3px);
+    }
+
+    /* Notice Box */
+    .notice-box {
+      background: rgba(22, 34, 56, 0.6);
+      border: 1px solid rgba(251, 191, 36, 0.25);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-top: 1rem;
+    }
+
+    .notice-icon {
+      color: var(--accent-amber);
+      font-size: 1.3rem;
+      line-height: 1;
+    }
+
+    .notice-text {
+      font-size: 0.875rem;
+      color: #e2e8f0;
+      line-height: 1.6;
+    }
+
+    .notice-text strong {
+      color: var(--accent-amber);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      font-size: 0.825rem;
+      color: var(--text-muted);
+      background: var(--bg-secondary);
+    }
+
+    footer a {
+      color: var(--accent-cyan);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 640px) {
+      h1 { font-size: 1.75rem; }
+      .atlas-card { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="badge">Acupoint & Sonoanatomy Lab</div>
+    <h1>경혈-초음파 인터랙티브 아틀라스</h1>
+    <p class="subtitle">
+      한의학 경혈의 입체 해부학적 구조와 임상 초음파 영상(Sonoanatomy)을 3D 시뮬레이션 및 인터랙티브 슬라이스로 학습할 수 있는 디지털 아틀라스 포털입니다.
+    </p>
+  </header>
+
+  <main>
+    <div class="section-title">인터랙티브 시뮬레이터 선택</div>
+    <div class="atlas-grid">
+
+      <!-- Neck US Atlas -->
+      <div class="atlas-card">
+        <div class="card-top">
+          <span class="card-tag tag-neck">경부 (Cervical Spine)</span>
+          <h2 class="card-title">목 부위 초음파 인터랙티브 아틀라스</h2>
+          <div class="card-eng">Neck Ultrasound Interactive Sonoanatomy Atlas</div>
+          <p class="card-desc">
+            경부 주요 혈위(천정, 부돌, 천창, 천용, 아문, 풍지 등)와 혈관(경동맥·내경정맥·척추동맥), 신경(미주신경·횡격신경·경신경총)의 3D 공간 관계 및 5대 초음파 스캔 모드를 인터랙티브하게 탐색합니다.
+          </p>
+          <ul class="feature-list">
+            <li>3D 경부 해부 구조 회전/투시 및 빔 투사 시뮬레이션</li>
+            <li>실제 초음파 단면(Sonoanatomy) 및 가이드 오버레이</li>
+            <li>5대 스캔 뷰: 악하부, 경동맥 삼각, 쇄골상와, 후경부, 후두하부</li>
+            <li>체계적인 5단계 학습 워크스페이스 및 실습 저널 탑재</li>
+          </ul>
+        </div>
+        <a href="Neck_US_Interactive_Atlas.html" class="btn-launch">
+          <span>아틀라스 실행하기</span>
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+          </svg>
+        </a>
+      </div>
+
+      <!-- L5S1 US Atlas -->
+      <div class="atlas-card">
+        <div class="card-top">
+          <span class="card-tag tag-spine">요천추 (Lumbar & Sacral Spine)</span>
+          <h2 class="card-title">L5-S1 초음파 인터랙티브 아틀라스</h2>
+          <div class="card-eng">L5-S1 & Lumbosacral Sonoanatomy Interactive Atlas</div>
+          <p class="card-desc">
+            요천추 연접부(L5-S1)의 척추sonoanatomy, 골성 지표(L5 극돌기, 후관절, 천골릉, 천골공) 및 대장유·관원유·소장유·방광유·상료·차료 등 요선부 주요 경혈의 안전 자침 심도와 해부학적 구조를 입체적으로 대조합니다.
+          </p>
+          <ul class="feature-list">
+            <li>3D 척추 모델과 초음파 스캔 플레인의 동적 연동</li>
+            <li>정중 종단 스캔(Median sagittal), 부정중 사위 스캔, 횡단 스캔</li>
+            <li>황색인대, 경막외강, 척수강 신경근의 깊이별 안전 영역 탐색</li>
+            <li>고해상도 초음파 도판 및 인터랙티브 라벨링 시스템</li>
+          </ul>
+        </div>
+        <a href="L5S1_Interactive_Atlas.html" class="btn-launch">
+          <span>아틀라스 실행하기</span>
+          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Notice Box -->
+    <div class="notice-box">
+      <div class="notice-icon">⚠️</div>
+      <div class="notice-text">
+        <strong>주의사항 및 안내:</strong> 본 사이트의 인터랙티브 아틀라스는 개인 교육 및 연구 학습용으로 제작되었으며, 최신 3D WebGL 및 HTML5 Canvas 기술을 기반으로 구현되어 있습니다. 임상 진단 및 중재시술 시에는 반드시 표준 의학 교과서와 정식 학술 가이드라인을 참조하시기 바랍니다.
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 Acupoint US Project · Developed for Evidence-Based Acupuncture & Sonoanatomy Education</p>
+    <p style="margin-top: 6px;">
+      GitHub Repository: <a href="https://github.com/jaehyokim-sketch/Acupoint_US" target="_blank" rel="noopener">jaehyokim-sketch/Acupoint_US</a>
+    </p>
+  </footer>
+
+</body>
+</html>
+
