@@ -250,6 +250,19 @@
       transform: translateX(3px);
     }
 
+    /* 시뮬레이터 버튼: 아틀라스 버튼 아래 보조 버튼 */
+    .btn-group { display: flex; flex-direction: column; gap: 0.6rem; }
+    .btn-launch.btn-sim {
+      background: transparent;
+      color: var(--accent-emerald);
+      border: 1px solid rgba(52, 211, 153, 0.45);
+      box-shadow: none;
+    }
+    .btn-launch.btn-sim:hover {
+      background: rgba(52, 211, 153, 0.12);
+      box-shadow: none;
+    }
+
     /* Notice Box */
     .notice-box {
       background: rgba(22, 34, 56, 0.6);
@@ -331,14 +344,23 @@
             <li>실제 초음파 단면(Sonoanatomy) 및 가이드 오버레이</li>
             <li>5대 스캔 뷰: 악하부, 경동맥 삼각, 쇄골상와, 후경부, 후두하부</li>
             <li>체계적인 5단계 학습 워크스페이스 및 실습 저널 탑재</li>
+            <li><strong>시뮬레이터</strong>: 단면 위 자침 연습·끝 위치 판독, 해부 정답 겹치기, 발표 장면·PPT용 PNG, 필수·우선순위 경혈 찾기</li>
           </ul>
         </div>
-        <a href="Neck_US_Interactive_Atlas.html" class="btn-launch">
-          <span>아틀라스 실행하기</span>
-          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
-          </svg>
-        </a>
+        <div class="btn-group">
+          <a href="Neck_US_Interactive_Atlas.html" class="btn-launch">
+            <span>아틀라스 실행하기</span>
+            <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+            </svg>
+          </a>
+          <a href="Neck_US_Interactive_simulator.html" class="btn-launch btn-sim">
+            <span>시뮬레이터 실행하기</span>
+            <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+            </svg>
+          </a>
+        </div>
       </div>
 
       <!-- L5S1 US Atlas -->
@@ -355,14 +377,23 @@
             <li>정중 종단 스캔(Median sagittal), 부정중 사위 스캔, 횡단 스캔</li>
             <li>황색인대, 경막외강, 척수강 신경근의 깊이별 안전 영역 탐색</li>
             <li>고해상도 초음파 도판 및 인터랙티브 라벨링 시스템</li>
+            <li><strong>침도 시뮬레이터</strong>: 도침 연습(날 회전 포함)·팁 위치 판독, Spine 논문 대조, 발표 장면, 요천부 경혈 찾기</li>
           </ul>
         </div>
-        <a href="L5S1_Interactive_Atlas.html" class="btn-launch">
-          <span>아틀라스 실행하기</span>
-          <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
-          </svg>
-        </a>
+        <div class="btn-group">
+          <a href="L5S1_Interactive_Atlas.html" class="btn-launch">
+            <span>아틀라스 실행하기</span>
+            <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+            </svg>
+          </a>
+          <a href="L5S1_Interactive_simulator.html" class="btn-launch btn-sim">
+            <span>침도 시뮬레이터 실행하기</span>
+            <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+            </svg>
+          </a>
+        </div>
       </div>
 
     </div>

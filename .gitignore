@@ -3,8 +3,10 @@ Atlas of Ultrasound-Guided Procedures in Interventional Pain Management/
 *.docx
 *.py
 *.pyc
+*.bat
 __pycache__/
 .vscode/
 .idea/
 neck_atlas_src/
+simulator_src/
 *모델 개선*.html
