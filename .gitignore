@@ -10,3 +10,5 @@ __pycache__/
 neck_atlas_src/
 simulator_src/
 *모델 개선*.html
+*.bak
+scratch_*.txt
